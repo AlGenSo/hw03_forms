@@ -1,13 +1,12 @@
 from django.db import models
-
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
 
 class Post(models.Model):
-    '''Объявляем класс Post, наследник класса Model из пакета models'''
-    '''Описываем поля модели и их типы'''
+    '''Объявляем класс Post, наследник класса Model из пакета models
+    Описываем поля модели и их типы'''
 
     text = models.TextField(
         verbose_name='Текст публикации',
@@ -32,16 +31,16 @@ class Post(models.Model):
     )
 
     class Meta:
-        '''Контейнер класса Post с фильтром даты'''
+
         ordering = ('-pub_date',)
 
     def __str__(self) -> str:
-        return self.text
+        return self.text[:30]
 
 
 class Group(models.Model):
-    '''Объявляем класс Group, наследник класса Model из пакета models'''
-    '''Описываем поля модели и их типы'''
+    '''Объявляем класс Group, наследник класса Model из пакета models
+    Описываем поля модели и их типы'''
 
     title = models.CharField(
         verbose_name='Сообщество',

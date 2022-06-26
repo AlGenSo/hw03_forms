@@ -10,9 +10,7 @@ from posts.forms import PostForm
 def index(request):
     '''view-функция для главной страницы'''
     template = 'posts/index.html'
-    post_list = (
-        Post.objects.all().order_by('-pub_date')
-    )
+    post_list = Post.objects.select_related('author', 'group')
     paginator = Paginator(post_list, LIMIT_COUNTS_POSTS)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -27,7 +25,7 @@ def groups_posts(request, slug):
     '''view-функция для страницы на которой будут посты'''
     template = 'posts/group_list.html'
     group = get_object_or_404(Group, slug=slug)
-    posts = Post.objects.filter(group=group)
+    posts = group.posts.all()
     paginator = Paginator(posts, LIMIT_COUNTS_POSTS)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -44,14 +42,12 @@ def profile(request, username):
     на ней будет отображаться информация об авторе и его посты.'''
     temmplate = 'posts/profile.html'
     author = get_object_or_404(User, username=username)
-    posts_list = Post.objects.filter(author=author)
-    posts_count = Post.objects.filter(author=author).count()
+    posts_list = author.posts.all()
     paginator = Paginator(posts_list, LIMIT_COUNTS_POSTS)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {
         'author': author,
-        'posts_count': posts_count,
         'page_obj': page_obj,
     }
 
