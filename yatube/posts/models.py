@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 
+from .constants import STRING_LENGHT_LIMIT
+
 User = get_user_model()
 
 
@@ -35,7 +37,7 @@ class Post(models.Model):
         ordering = ('-pub_date',)
 
     def __str__(self) -> str:
-        return self.text[:30]
+        return self.text[:STRING_LENGHT_LIMIT]
 
 
 class Group(models.Model):

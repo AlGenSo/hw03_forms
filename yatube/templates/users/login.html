@@ -14,7 +14,7 @@
 
           {%  include 'includes/form_errors.html'  %}
 
-          <form method="post" action="{% url 'users:login' %}>
+          <form method="post" action="{% url 'users:login' %}">
           {% csrf_token %}
 
           {% for field in form %}

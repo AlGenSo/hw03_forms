@@ -21,7 +21,7 @@
   <article>
     <ul>
     <li>
-      Автор: {{ author }}
+      Автор: {{ author.get_full_name }}
       <a href="{% url 'posts:profile' post.author.username %}">
         все посты пользователя
       </a>
@@ -36,9 +36,12 @@
     <a href="{% url 'posts:post_detail' post.id %}">
       подробная информация
     </a>
-    <a href="{% url 'posts:group_list' post.group.slug %}">
-      все записи группы
-    </a>
+    {% if post.group %}
+      Группа: {{ group.title }}
+        <a href="{% url 'posts:group_list' post.group.slug %}">
+          все записи группы
+        </a>
+    {% endif %}
   </article>
   <hr>
   {% if not forloop.last %}<hr>{% endif %}

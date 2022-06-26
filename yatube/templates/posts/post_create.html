@@ -37,7 +37,6 @@
             {% csrf_token %}
 
               {% for field in form %}
-                {% load user_filters %}
                 {%  include 'includes/form_group.html'  %}
               {% endfor %}
 
