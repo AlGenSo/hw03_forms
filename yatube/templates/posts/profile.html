@@ -19,7 +19,6 @@
   <h3>Всего постов: {{ author.posts.all.count }}</h3>
   {% for post in page_obj %}
   {% include 'posts/includes/detailed_information.html' %}
-  </article>
   {% if not forloop.last %}<hr>{% endif %}
   {% endfor %}
   {% include 'posts/includes/paginator.html' %}
