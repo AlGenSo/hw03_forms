@@ -26,7 +26,7 @@ urlpatterns = [
         name='post_detail',
     ),
     path(
-        'create/',
+        '/create/',
         views.post_create,
         name='post_create',
     ),

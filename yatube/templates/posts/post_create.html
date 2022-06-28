@@ -31,7 +31,7 @@
                 {% if is_edit %}
                   {% url 'posts:edit' post.id %}
                 {% else %}
-                  {% url 'posts:post_create' %}
+                  {% url 'posts:post_create' create/%}
                 {% endif %}"
             >
             {% csrf_token %}

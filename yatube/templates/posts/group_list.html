@@ -20,21 +20,7 @@
     </h1>
       <p>{{ group.description }}</p>
       {%  for post in page_obj  %}
-      <article>
-        <ul>
-          <li>
-            Автор: {{ post.author.get_full_name }}
-          </li>
-          <li>
-            Дата публикации: {{ post.pub_date|date:"d E Y" }}
-          </li>
-        </ul>
-        <p>
-          {% autoescape on %}
-            {{ post.text|linebreaks }}
-          {% endautoescape %}
-        </p>
-      </article>
+      {% include 'posts/includes/detailed_information.html' %}
       {%  if not forloop.last %}<hr>{% endif %}
       {% endfor %}
       {% include 'posts/includes/paginator.html' %}

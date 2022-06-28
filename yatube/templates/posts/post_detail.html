@@ -19,7 +19,7 @@
     </li>
     {% if post.group %}
         <li class="list-group-item">
-        Группа: {{ group.title }}<br>
+        Группа: {{ post.group.title }}<br>
          <a href="{% url 'posts:group_list' post.group.slug %}">
            все записи группы
          </a>
@@ -41,7 +41,7 @@
         >
         Всего постов автора:
           <span >
-            {{ post.author.posts.count }}
+            {{ author.posts.all.count }}
           </span>
     </li>
     <li class="list-group-item">

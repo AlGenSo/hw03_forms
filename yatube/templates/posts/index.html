@@ -13,25 +13,7 @@
     {% endautoescape %}
   </h1>
   {%  for post in page_obj  %}
-  <article>
-    <ul>
-      <li>
-        Автор: {{ post.author.get_full_name }}
-      </li>
-      <li>
-        Дата публикации: {{ post.pub_date|date:"d E Y" }}
-      </li>
-    </ul>
-    <p>
-      {% autoescape on %}
-        {{ post.text|linebreaks }}
-      {% endautoescape %}
-    </p>
-    {% if post.group %}
-      <a href="{% url 'posts:group_list' post.group.slug %}">
-        все записи группы</a>
-    {%  endif  %}
-  </article>
+  {% include 'posts/includes/detailed_information.html' %}
   {% if not forloop.last %}<hr>{% endif %}
   {% endfor %}
   {% include 'posts/includes/paginator.html' %}
