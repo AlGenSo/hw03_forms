@@ -16,7 +16,7 @@
   <a href="{% url 'posts:post_detail' post.id %}">
     подробная информация
   </a>
-  {% if not post.group %}
+  {% if not group and post.group %}
     Группа: {{ post.group.title }}
       <a href="{% url 'posts:group_list' post.group.slug %}">
         все записи группы
